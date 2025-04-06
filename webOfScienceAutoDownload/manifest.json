@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "Web of Science Downloader",
+  "version": "1.0",
+  "description": "自动下载Web of Science文章",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://webofscience-clarivate-cn-443.webvpn.zisu.edu.cn/*",
+    "https://sci-hub.se/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://webofscience-clarivate-cn-443.webvpn.zisu.edu.cn/wos/woscc/summary/*",
+        "https://webofscience-clarivate-cn-443.webvpn.zisu.edu.cn/wos/woscc/full-record/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_end",
+      "all_frames": true
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  }
+} 
